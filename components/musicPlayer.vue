@@ -19,13 +19,13 @@
           <v-spacer />
 
           <v-list-item-icon>
-            <v-btn icon>
+            <v-btn icon disabled>
               <v-icon>mdi-rewind</v-icon>
             </v-btn>
           </v-list-item-icon>
 
           <v-list-item-icon :class="{ 'mx-5': $vuetify.breakpoint.mdAndUp }">
-            <v-btn icon>
+            <v-btn icon @click="togglePlaySong">
               <v-icon>mdi-pause</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -34,7 +34,7 @@
             class="ml-0"
             :class="{ 'mr-3': $vuetify.breakpoint.mdAndUp }"
           >
-            <v-btn icon>
+            <v-btn icon disabled>
               <v-icon>mdi-fast-forward</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -59,13 +59,17 @@ export default {
   },
   watch: {
     song (newValue, oldValue) {
+      if (this.audio) {
+        this.audio.pause()
+      }
       this.audio = new Audio(newValue.preview_url)
       this.audio.play()
     }
-    // audio (newValue, oldValue) {
-    //   this.audio.stop()
-    //   this.audio.play()
-    // }
+  },
+  methods: {
+    togglePlaySong () {
+
+    }
   }
 }
 </script>
