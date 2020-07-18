@@ -1,7 +1,11 @@
 <template>
   <v-app dark>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title
+        class="toolbar-title"
+        @click="handleClickTitle"
+        v-text="title"
+      />
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -24,6 +28,17 @@ export default {
       fixed: false,
       title: 'Platzi Music Vue'
     }
+  },
+  methods: {
+    handleClickTitle () {
+      this.$router.push('/')
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.toolbar-title {
+  cursor: pointer
+}
+</style>
