@@ -23,7 +23,7 @@
           sm="6"
           md="4"
         >
-          <v-card @click="handlePlayButtonClick(item)">
+          <v-card @click="handleClickPlayButton(item)">
             <div class="d-flex flex-no-wrap justify-space-between">
               <div class="d-flex flex-wrap flex-column justify-space-center">
                 <v-card-title class="card--title" v-text="item.name" />
@@ -88,7 +88,7 @@ export default {
     ...mapActions({
       getSongs: 'songs/getSongs'
     }),
-    handlePlayButtonClick (song) {
+    handleClickPlayButton (song) {
       this.selectedSong = song
     }
   }
