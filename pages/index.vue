@@ -8,15 +8,6 @@
 import ArtistsDataIterator from '~/components/artists/DataIterator'
 
 export default {
-  components: { ArtistsDataIterator },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          text: 'Inicio'
-        }
-      ]
-    }
-  }
+  components: { ArtistsDataIterator }
 }
 </script>
