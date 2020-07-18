@@ -64,6 +64,9 @@ export default {
       this.isPlaying = true
     }
   },
+  beforeDestroy () {
+    this.audio.pause()
+  },
   methods: {
     togglePlaySong () {
       this.isPlaying ? this.audio.pause() : this.audio.play()
