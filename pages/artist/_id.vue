@@ -1,14 +1,6 @@
 <template>
   <v-container class="list-container pa-4">
-    <v-text-field
-      v-model="search"
-      class="my-2"
-      append-icon="mdi-magnify"
-      label="Buscar canción"
-      single-line
-      outlined
-      hide-details
-    />
+    <SongsSearchInput v-model="search" />
     <v-row>
       <template v-if="loadingSongs">
         <v-col v-for="i in 10" :key="i" cols="12" sm="6" md="4">
@@ -50,11 +42,13 @@
 import { mapActions, mapState } from 'vuex'
 import artistCardSkeleton from '~/components/skeletons/artistCard'
 import musicPlayer from '~/components/musicPlayer'
+import SongsSearchInput from '~/components/songs/SearchInput'
 
 export default {
   components: {
     artistCardSkeleton,
-    musicPlayer
+    musicPlayer,
+    SongsSearchInput
   },
   data () {
     return {
