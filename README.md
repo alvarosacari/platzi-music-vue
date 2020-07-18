@@ -4,7 +4,7 @@
 
 ## Demo
 
-[https://platzi-music-vue.netlify.app](https://platzi-music-vue.netlify.app)
+[https://platzi-music-vue-nuxt.netlify.app/](https://platzi-music-vue-nuxt.netlify.app/)
 
 ## Build Setup
 
