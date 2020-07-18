@@ -10,9 +10,7 @@
               {{ song.name }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              {{
-                song.artists[0].name
-              }}
+              {{ song.artists[0].name }}
             </v-list-item-subtitle>
           </v-list-item-content>
 
@@ -25,8 +23,8 @@
           </v-list-item-icon>
 
           <v-list-item-icon :class="{ 'mx-5': $vuetify.breakpoint.mdAndUp }">
-            <v-btn icon @click="togglePlaySong">
-              <v-icon>mdi-pause</v-icon>
+            <v-btn icon :disabled="!isPlaying && !song" @click="togglePlaySong">
+              <v-icon>{{ isPlaying ? "mdi-pause" : "mdi-play" }}</v-icon>
             </v-btn>
           </v-list-item-icon>
 
@@ -80,6 +78,6 @@ export default {
   width: 100%;
   position: fixed;
   bottom: 0;
-  left: 0
+  left: 0;
 }
 </style>
