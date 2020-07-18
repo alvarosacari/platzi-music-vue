@@ -54,21 +54,22 @@ export default {
   },
   data () {
     return {
-      audio: null
+      audio: new Audio(),
+      isPlaying: false
     }
   },
   watch: {
     song (newValue, oldValue) {
-      if (this.audio) {
-        this.audio.pause()
-      }
-      this.audio = new Audio(newValue.preview_url)
+      this.audio.pause()
+      this.audio.src = newValue.preview_url
       this.audio.play()
+      this.isPlaying = true
     }
   },
   methods: {
     togglePlaySong () {
-
+      this.isPlaying ? this.audio.pause() : this.audio.play()
+      this.isPlaying = !this.isPlaying
     }
   }
 }
