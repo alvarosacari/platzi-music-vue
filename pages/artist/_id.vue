@@ -15,22 +15,11 @@
           sm="6"
           md="4"
         >
-          <v-card @click="handleClickPlayButton(item)">
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div class="d-flex flex-wrap flex-column justify-space-center">
-                <v-card-title class="card--title" v-text="item.name" />
-                <v-card-actions>
-                  <v-btn text x-small>
-                    Reproducir
-                  </v-btn>
-                </v-card-actions>
-              </div>
-
-              <v-avatar class="ma-3" size="125" tile>
-                <v-img :src="item.album.images[0].url" />
-              </v-avatar>
-            </div>
-          </v-card>
+          <SongCard
+            :name="item.name"
+            :image-url="item.album.images[0].url"
+            @click="handleClickPlayButton(item)"
+          />
         </v-col>
       </template>
     </v-row>
@@ -43,12 +32,14 @@ import { mapActions, mapState } from 'vuex'
 import artistCardSkeleton from '~/components/skeletons/artistCard'
 import musicPlayer from '~/components/musicPlayer'
 import SongsSearchInput from '~/components/songs/SearchInput'
+import SongCard from '~/components/songs/Card'
 
 export default {
   components: {
     artistCardSkeleton,
     musicPlayer,
-    SongsSearchInput
+    SongsSearchInput,
+    SongCard
   },
   data () {
     return {
@@ -90,10 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card--title {
-  font-size: 1.2rem;
-  line-height: 1.2;
-}
 .list-container {
   margin-bottom: 90px;
 }
