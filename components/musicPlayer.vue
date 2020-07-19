@@ -17,7 +17,7 @@
           <v-spacer />
 
           <v-list-item-icon>
-            <v-btn icon disabled>
+            <v-btn icon :disabled="!prevSong" @click="$emit('change:song', prevSong)">
               <v-icon>mdi-skip-previous</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -32,7 +32,7 @@
             class="ml-0"
             :class="{ 'mr-3': $vuetify.breakpoint.mdAndUp }"
           >
-            <v-btn icon disabled>
+            <v-btn icon :disabled="!nextSong" @click="$emit('change:song', nextSong)">
               <v-icon>mdi-skip-next</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -45,10 +45,9 @@
 <script>
 export default {
   props: {
-    song: {
-      type: Object,
-      default: () => ({ name: '' })
-    }
+    song: { type: Object, default: () => (null) },
+    prevSong: { type: Object, default: () => (null) },
+    nextSong: { type: Object, default: () => (null) }
   },
   data () {
     return {

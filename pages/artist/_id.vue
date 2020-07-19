@@ -18,12 +18,17 @@
           <SongCard
             :name="item.name"
             :image-url="item.album.images[0].url"
-            @click="handleClickPlayButton(item)"
+            @click="replaceSelectedSong(item)"
           />
         </v-col>
       </template>
     </v-row>
-    <musicPlayer :song="selectedSong" />
+    <musicPlayer
+      :song="selectedSong"
+      :prev-song="prevSong"
+      :next-song="nextSong"
+      @change:song="replaceSelectedSong"
+    />
   </v-container>
 </template>
 
@@ -61,6 +66,24 @@ export default {
         const search = this.search.toLowerCase()
         return name.includes(search)
       })
+    },
+    prevSong () {
+      if (!this.selectedSong) {
+        return null
+      }
+      const selectedSongIndex = this.getSelectedSongIndex()
+      return selectedSongIndex === 0
+        ? null
+        : this.songsToShow[selectedSongIndex - 1]
+    },
+    nextSong () {
+      if (!this.selectedSong) {
+        return null
+      }
+      const selectedSongIndex = this.getSelectedSongIndex()
+      return selectedSongIndex === this.songsToShow.length - 1
+        ? null
+        : this.songsToShow[selectedSongIndex + 1]
     }
   },
 
@@ -73,8 +96,13 @@ export default {
     ...mapActions({
       getSongs: 'songs/getSongs'
     }),
-    handleClickPlayButton (song) {
+    replaceSelectedSong (song) {
       this.selectedSong = song
+    },
+    getSelectedSongIndex () {
+      return this.songsToShow.findIndex(
+        item => item.id === this.selectedSong.id
+      )
     }
   }
 }
