@@ -1,4 +1,7 @@
-import { REPLACE_ARTISTS, REPLACE_LOADING_ARTISTS } from '~/types/mutation-types'
+import {
+  REPLACE_ARTISTS,
+  REPLACE_LOADING_ARTISTS
+} from '~/types/mutation-types'
 import { Artist as ArtistAPI } from '~/api/artist'
 
 export const state = () => ({
@@ -14,9 +17,17 @@ export const actions = {
         .then((response) => {
           const artists = response.data.albums.items
           commit(REPLACE_ARTISTS, { artists })
+          this.$snackbar.success(
+            'El listado de artistas se ha cargado correctamente'
+          )
           resolve(response)
         })
-        .catch(error => reject(error))
+        .catch((error) => {
+          this.$snackbar.success(
+            'Ocurrió un error al cargar el listado de artistas'
+          )
+          reject(error)
+        })
         .finally(() => {
           commit(REPLACE_LOADING_ARTISTS, { status: false })
         })

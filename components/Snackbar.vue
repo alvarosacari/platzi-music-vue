@@ -10,6 +10,7 @@
       icon
       class="text-capitalize"
       text
+      disabled
     >
       <v-icon>{{ icon }}</v-icon>
     </v-btn>

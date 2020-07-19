@@ -14,9 +14,17 @@ export const actions = {
         .then((response) => {
           const songs = response.data.tracks
           commit(REPLACE_SONGS, { songs })
+          this.$snackbar.success(
+            'El listado de canciones se ha cargado correctamente'
+          )
           resolve(response)
         })
-        .catch(error => reject(error))
+        .catch((error) => {
+          this.$snackbar.success(
+            'Ocurrió un error al cargar el listado de canciones'
+          )
+          reject(error)
+        })
         .finally(() => {
           commit(REPLACE_LOADING_SONGS, { status: false })
         })
