@@ -18,7 +18,7 @@
 
           <v-list-item-icon>
             <v-btn icon disabled>
-              <v-icon>mdi-rewind</v-icon>
+              <v-icon>mdi-skip-previous</v-icon>
             </v-btn>
           </v-list-item-icon>
 
@@ -33,7 +33,7 @@
             :class="{ 'mr-3': $vuetify.breakpoint.mdAndUp }"
           >
             <v-btn icon disabled>
-              <v-icon>mdi-fast-forward</v-icon>
+              <v-icon>mdi-skip-next</v-icon>
             </v-btn>
           </v-list-item-icon>
         </v-list-item>
