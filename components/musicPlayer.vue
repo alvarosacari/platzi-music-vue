@@ -97,6 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .music-player {
+  z-index: 99;
   width: 100%;
   position: fixed;
   bottom: 0;

@@ -18,6 +18,7 @@
           <SongCard
             :name="item.name"
             :image-url="item.album.images[0].url"
+            :active="!!selectedSong && item.id === selectedSong.id"
             @click="replaceSelectedSong(item)"
           />
         </v-col>
