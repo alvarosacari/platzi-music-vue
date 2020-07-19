@@ -1,7 +1,7 @@
 <template>
   <div class="music-player">
     <v-card tile>
-      <v-progress-linear :value="100" class="my-0" height="3" />
+      <v-progress-linear :value="songCurrentTime" class="my-0" height="3" />
 
       <v-list>
         <v-list-item>
@@ -17,7 +17,11 @@
           <v-spacer />
 
           <v-list-item-icon>
-            <v-btn icon :disabled="!prevSong" @click="$emit('change:song', prevSong)">
+            <v-btn
+              icon
+              :disabled="!prevSong"
+              @click="$emit('change:song', prevSong)"
+            >
               <v-icon>mdi-skip-previous</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -32,7 +36,11 @@
             class="ml-0"
             :class="{ 'mr-3': $vuetify.breakpoint.mdAndUp }"
           >
-            <v-btn icon :disabled="!nextSong" @click="$emit('change:song', nextSong)">
+            <v-btn
+              icon
+              :disabled="!nextSong"
+              @click="$emit('change:song', nextSong)"
+            >
               <v-icon>mdi-skip-next</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -45,23 +53,35 @@
 <script>
 export default {
   props: {
-    song: { type: Object, default: () => (null) },
-    prevSong: { type: Object, default: () => (null) },
-    nextSong: { type: Object, default: () => (null) }
+    song: { type: Object, default: () => null },
+    prevSong: { type: Object, default: () => null },
+    nextSong: { type: Object, default: () => null }
   },
   data () {
     return {
       audio: new Audio(),
+      duration: 0,
+      songCurrentTime: 0,
       isPlaying: false
     }
   },
   watch: {
     song (newValue, oldValue) {
+      this.duration = 0
+      this.songCurrentTime = 0
       this.audio.pause()
       this.audio.src = newValue.preview_url
       this.audio.play()
       this.isPlaying = true
     }
+  },
+  created () {
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.duration = this.audio.duration
+    })
+    this.audio.addEventListener('timeupdate', () => {
+      this.songCurrentTime = (this.audio.currentTime * 100) / this.duration
+    })
   },
   beforeDestroy () {
     this.audio.pause()
