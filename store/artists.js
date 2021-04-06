@@ -23,7 +23,7 @@ export const actions = {
           resolve(response)
         })
         .catch((error) => {
-          this.$snackbar.success(
+          this.$snackbar.error(
             'Ocurrió un error al cargar el listado de artistas'
           )
           reject(error)
