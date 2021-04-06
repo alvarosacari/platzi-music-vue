@@ -8,9 +8,9 @@
       />
       <v-spacer />
     </v-app-bar>
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
     <Snackbar />
   </v-app>
 </template>
