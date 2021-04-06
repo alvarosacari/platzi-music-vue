@@ -3,7 +3,7 @@ import en from 'vuetify/lib/locale/en'
 import es from 'vuetify/lib/locale/es'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
    ** Headers of the page
    */
