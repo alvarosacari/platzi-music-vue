@@ -1,12 +1,14 @@
 import {
   REPLACE_ARTISTS,
-  REPLACE_LOADING_ARTISTS
+  REPLACE_LOADING_ARTISTS,
+  REPLACE_ERROR_ARTISTS
 } from '~/types/mutation-types'
 import { Artist as ArtistAPI } from '~/api/artist'
 
 export const state = () => ({
   artists: [],
-  loadingArtists: false
+  loadingArtists: false,
+  error: undefined
 })
 
 export const actions = {
@@ -27,6 +29,7 @@ export const actions = {
             'Ocurrió un error al cargar el listado de artistas'
           )
           reject(error)
+          commit(REPLACE_ERROR_ARTISTS, { error })
         })
         .finally(() => {
           commit(REPLACE_LOADING_ARTISTS, { status: false })
@@ -41,5 +44,8 @@ export const mutations = {
   },
   [REPLACE_LOADING_ARTISTS] (state, { status }) {
     state.loadingArtists = status
+  },
+  [REPLACE_ERROR_ARTISTS] (state, { error }) {
+    state.error = error
   }
 }
