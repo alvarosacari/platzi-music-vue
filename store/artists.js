@@ -8,7 +8,7 @@ import { Artist as ArtistAPI } from '~/api/artist'
 export const state = () => ({
   artists: [],
   loadingArtists: false,
-  error: undefined
+  error: false
 })
 
 export const actions = {
@@ -29,7 +29,7 @@ export const actions = {
             'Ocurrió un error al cargar el listado de artistas'
           )
           reject(error)
-          commit(REPLACE_ERROR_ARTISTS, { error })
+          commit(REPLACE_ERROR_ARTISTS, { error: true })
         })
         .finally(() => {
           commit(REPLACE_LOADING_ARTISTS, { status: false })

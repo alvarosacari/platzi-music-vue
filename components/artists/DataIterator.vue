@@ -19,8 +19,8 @@
           :image-url="item.images[0].url"
         />
       </v-col>
-      <template v-if="error !== undefined">
-        <img :src="errorImage">
+      <template v-if="error">
+        <img :src="errorImage" class="responsive-image">
       </template>
     </template>
   </v-row>
@@ -63,3 +63,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .responsive-image{
+    width: 100%;
+    height: auto;
+  }
+</style>
