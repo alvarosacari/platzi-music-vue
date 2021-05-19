@@ -1,6 +1,7 @@
 <template>
   <v-container class="pa-4">
     <ArtistsDataIterator />
+    <pre>TEST 1</pre>
   </v-container>
 </template>
 
